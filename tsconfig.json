@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "jsxFactory": "h",
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "target": "es5",
+    "moduleResolution": "Node",
+    "lib": ["es2016", "dom"]
+  },
+  "exclude": ["lib/spanner_marketing/content_cms/jc", "work_templates", "build"]
+}

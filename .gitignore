@@ -1,0 +1,19 @@
+.vagrant
+provisioning/roles/deploy/files/*.tar.gz
+bower_components
+provisioning/roles/deploy/vars/build.yml
+provisioning/terraform.tfvars
+provisioning/.terraform
+provisioning/terraform.tfstate*
+yarn-error.log
+*.retry
+build/
+dist/
+node_modules
+virtualenv
+__pycache__
+*.pyc
+provisioning/secrets
+
+# Temp
+/TRIAGE.md

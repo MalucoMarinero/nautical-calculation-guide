@@ -1,0 +1,21 @@
+{
+  "translation": {
+    "title": "Nautical Calculation Guide",
+    "plane_sailing_ab": {
+      "title": "Plane Sailing - Position A to B",
+      "point_a": "Point A",
+      "point_b": "Point B",
+      "parallel_sailing": "Latitudes are equivalent, so using parallel sailing.",
+      "plane_sailing": "Latitudes not equivalent, so using plane sailing."
+    },
+    "plane_sailing_dr": {
+      "title": "Plane Sailing - Dead Reckoning",
+      "start": "Start",
+      "course": "Course (T)",
+      "speed": "Speed (kt)",
+      "time": "Time (hrs)",
+      "distance": "Distance (nm)"
+    },
+    "get_started": "Get Started"
+  }
+}
