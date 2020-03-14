@@ -7,7 +7,6 @@ provisioning/.terraform
 provisioning/terraform.tfstate*
 yarn-error.log
 *.retry
-build/
 dist/
 node_modules
 virtualenv
