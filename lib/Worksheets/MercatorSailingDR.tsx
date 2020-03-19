@@ -18,35 +18,39 @@ import {
   lonFromFloat,
 } from "./Shared"
 
-export class PlaneSailingDRState {
+export class MercatorSailingDRState {
   @observable point_a_lat: Latitude
   @observable point_a_lon: Longitude
   @observable course: number
   @observable speed: number
   @observable time: number
+  @observable start_mer_part: number
+  @observable dest_mer_part: number
 
   constructor() {
-    this.point_a_lat = new Latitude(12, 4.2, "S")
-    this.point_a_lon = new Longitude(179, 24.3, "W")
-    this.course = 243
-    this.speed = 9
-    this.time = 8
+    this.point_a_lat = new Latitude(36, 45, "S")
+    this.point_a_lon = new Longitude(0, 28, "W")
+    this.course = 67
+    this.speed = 10
+    this.time = 126
+    this.start_mer_part = 2359.87
+    this.dest_mer_part = 1777.41
   }
 }
 
-export default function PlaneSailingDR() {
+export default function MercatorSailingDR() {
   const { localize: l10n } = useContext(RenderContext)
-  const state = useObservable(new PlaneSailingDRState())
+  const state = useObservable(new MercatorSailingDRState())
 
   return useObserver(() => {
     const startingPoints = (
       <Fragment>
-        <label>{l10n.t("plane_sailing_dr.start")}</label>
+        <label>{l10n.t("mercator_sailing_dr.start")}</label>
         <LatitudeInput lat={state.point_a_lat} />{" "}
         <LongitudeInput lon={state.point_a_lon} />
         <br />
         <label>
-          {l10n.t("plane_sailing_dr.course")}
+          {l10n.t("mercator_sailing_dr.course")}
           <input
             onChange={(e) =>
               (state.course = (e.target as HTMLInputElement).valueAsNumber)
@@ -59,7 +63,7 @@ export default function PlaneSailingDR() {
         </label>
         <br />
         <label>
-          {l10n.t("plane_sailing_dr.speed")}
+          {l10n.t("mercator_sailing_dr.speed")}
           <input
             onChange={(e) =>
               (state.speed = (e.target as HTMLInputElement).valueAsNumber)
@@ -71,7 +75,7 @@ export default function PlaneSailingDR() {
         </label>
         <br />
         <label>
-          {l10n.t("plane_sailing_dr.time")}
+          {l10n.t("mercator_sailing_dr.time")}
           <input
             onChange={(e) =>
               (state.time = (e.target as HTMLInputElement).valueAsNumber)
@@ -101,16 +105,9 @@ export default function PlaneSailingDR() {
 
     const dlat_deg = (distance * cos(ca)) / 60
     const dlat = latFromFloat(ca_lat == "S" ? dlat_deg * -1 : dlat_deg)
-    const departure = dlat.asMinutes() * tan(ca)
-
-    const mlat = latFromFloat(state.point_a_lat.asFloat() + dlat.asFloat() / 2)
-    const dlon_deg = departure / cos(mlat.asDegrees()) / 60
-    const dlon = lonFromFloat(ca_lon == "E" ? dlon_deg : dlon_deg * -1)
-
     const dest_lat = latFromFloat(state.point_a_lat.asFloat() + dlat.asFloat())
-    const dest_lon = lonFromFloat(state.point_a_lon.asFloat() + dlon.asFloat())
 
-    const calculation = (
+    const calculationOne = (
       <Fragment>
         <p>
           {`D'Lat = Distance * Cos Course Angle`}
@@ -119,13 +116,58 @@ export default function PlaneSailingDR() {
             .asMinutes()
             .toFixed(2)} = ${dlat.asDegrees().toFixed(3)}\u00b0`}
           <br />
-          {`Departure = D'Lat * Tan Course Angle`}
+        </p>
+      </Fragment>
+    )
+
+    const meridionalParts = (
+      <Fragment>
+        <p>{l10n.t("mercator_sailing_dr.meridional_parts")}</p>
+        <label>
+          {l10n.t("mercator_sailing_dr.start_latitude") +
+            " " +
+            state.point_a_lat.asString()}
+          <input
+            onChange={(e) =>
+              (state.start_mer_part = (e.target as HTMLInputElement).valueAsNumber)
+            }
+            type="number"
+            min="0"
+            value={state.start_mer_part}
+          />
+        </label>
+        <br />
+        <label>
+          {l10n.t("mercator_sailing_dr.end_latitude") +
+            " " +
+            dest_lat.asString()}
+          <input
+            onChange={(e) =>
+              (state.dest_mer_part = (e.target as HTMLInputElement).valueAsNumber)
+            }
+            type="number"
+            min="0"
+            value={state.dest_mer_part}
+          />
+        </label>
+      </Fragment>
+    )
+
+    const dmp = Math.abs(state.start_mer_part - state.dest_mer_part)
+    const dlon_deg = (dmp * tan(ca)) / 60
+    const dlon = lonFromFloat(ca_lon == "E" ? dlon_deg : dlon_deg * -1)
+
+    const dest_lon = lonFromFloat(state.point_a_lon.asFloat() + dlon.asFloat())
+
+    const calculationTwo = (
+      <Fragment>
+        <p>
           <br />
-          {`Departure = ${departure.toFixed(2)}nm`}
+          {`DMP = Start Meridional Part - Dest Meridional Part`}
           <br />
-          {`Mean Lat = ${mlat.asString()}`}
+          {`DMP = ${dmp.toFixed(2)}`}
           <br />
-          {`D'Lon = Departure / Cos Mean Lat`}
+          {`D'Lon = DMP * Tan Course Angle`}
           <br />
           {`D'Lon = ${dlon.asString()} = ${dlon
             .asMinutes()
@@ -139,13 +181,17 @@ export default function PlaneSailingDR() {
 
     return (
       <Fragment>
-        <h1>{l10n.t("plane_sailing_dr.title")}</h1>
+        <h1>{l10n.t("mercator_sailing_dr.title")}</h1>
         <hr />
         {startingPoints}
         <hr />
         {measures}
         <hr />
-        {calculation}
+        {calculationOne}
+        <hr />
+        {meridionalParts}
+        <hr />
+        {calculationTwo}
         <hr />
       </Fragment>
     )

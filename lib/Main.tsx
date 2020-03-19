@@ -5,6 +5,7 @@ import localeEn from "./locales/en.json"
 import { RenderContext, generateFullContext } from "./RenderContext"
 import PlaneSailingAtoB from "./Worksheets/PlaneSailingAtoB"
 import PlaneSailingDR from "./Worksheets/PlaneSailingDR"
+import MercatorSailingDR from "./Worksheets/MercatorSailingDR"
 
 document.addEventListener("DOMContentLoaded", function(event) {
   const appContainer = document.getElementById("app")
@@ -24,14 +25,15 @@ function MainView() {
 
   let view = null
 
-  console.log(page)
-
   switch (page) {
     case "plane_sailing_ab":
       view = <PlaneSailingAtoB />
       break
     case "plane_sailing_dr":
       view = <PlaneSailingDR />
+      break
+    case "mercator_sailing_dr":
+      view = <MercatorSailingDR />
       break
     default:
       view = <ChooseWorksheet setPage={setPage} />
@@ -41,7 +43,9 @@ function MainView() {
   return (
     <div>
       <header>
-        <h1>{l10n.t("title")}</h1>
+        <h1>
+          <a onClick={() => setPage("home")}>{l10n.t("title")}</a>
+        </h1>
       </header>
       <main>{view}</main>
     </div>
@@ -65,6 +69,11 @@ function ChooseWorksheet(props: ChooseWorksheetProps) {
       <li>
         <a onClick={() => props.setPage("plane_sailing_dr")}>
           {l10n.t("plane_sailing_dr.title")}
+        </a>
+      </li>
+      <li>
+        <a onClick={() => props.setPage("mercator_sailing_dr")}>
+          {l10n.t("mercator_sailing_dr.title")}
         </a>
       </li>
     </ul>

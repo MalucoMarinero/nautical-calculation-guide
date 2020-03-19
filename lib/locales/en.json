@@ -16,6 +16,17 @@
       "time": "Time (hrs)",
       "distance": "Distance (nm)"
     },
+    "mercator_sailing_dr": {
+      "title": "Mercator Sailing - Dead Reckoning",
+      "start": "Start",
+      "course": "Course (T)",
+      "speed": "Speed (kt)",
+      "time": "Time (hrs)",
+      "distance": "Distance (nm)",
+      "meridional_parts": "Collect the Meridional Parts for the Start and Finish Latitude",
+      "start_latitude": "Start Latitude",
+      "end_latitude": "End Latitude"
+    },
     "get_started": "Get Started"
   }
 }
