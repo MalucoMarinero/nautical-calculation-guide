@@ -98,7 +98,11 @@ export class Latitude {
       } else {
         const degs = this.asDegrees() - lat.asDegrees()
         const minutes = (degs % 1) * 60
-        return new Latitude(Math.floor(degs), minutes, this.sign)
+        return new Latitude(
+          Math.floor(degs),
+          minutes,
+          this.sign == "S" ? "N" : "S"
+        )
       }
     } else {
       const degs = lat.asDegrees() + this.asDegrees()
@@ -146,7 +150,11 @@ export class Longitude {
       } else {
         const degs = this.asDegrees() - lon.asDegrees()
         const minutes = (degs % 1) * 60
-        return new Longitude(Math.floor(degs), minutes, this.sign)
+        return new Longitude(
+          Math.floor(degs),
+          minutes,
+          this.sign == "E" ? "W" : "E"
+        )
       }
     } else {
       let degs = lon.asDegrees() + this.asDegrees()
