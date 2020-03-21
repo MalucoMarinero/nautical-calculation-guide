@@ -114,7 +114,7 @@ export default function PlaneSailingAtoB() {
             <br />
             {`Course = ${true_course.toFixed(1)}\u00b0 T`}
             <br />
-            {`Distance = D'Lat (in minutes) / Course Angle`}
+            {`Distance = D'Lat (in minutes) / Cos Course Angle`}
             <br />
             {`Distance = ${distance.toFixed(2)}nm`}
             <br />
