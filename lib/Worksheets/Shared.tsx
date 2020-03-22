@@ -8,6 +8,12 @@ export function cos(degrees: number) {
 export function acos(distance: number) {
   return (Math.acos(distance) * 180) / Math.PI
 }
+export function sin(degrees: number) {
+  return Math.sin((degrees * Math.PI) / 180)
+}
+export function asin(distance: number) {
+  return (Math.asin(distance) * 180) / Math.PI
+}
 export function tan(degrees: number) {
   return Math.tan((degrees * Math.PI) / 180)
 }
@@ -76,7 +82,7 @@ export class Latitude {
   }
 
   asString() {
-    return `${this.degrees.toFixed(0)}\u00b0 ${this.minutes.toFixed(2)}" ${
+    return `${this.degrees.toFixed(0)}\u00b0 ${this.minutes.toFixed(2)}' ${
       this.sign
     }`
   }
@@ -128,7 +134,7 @@ export class Longitude {
   }
 
   asString() {
-    return `${this.degrees.toFixed(0)}\u00b0 ${this.minutes.toFixed(2)}" ${
+    return `${this.degrees.toFixed(0)}\u00b0 ${this.minutes.toFixed(2)}1 ${
       this.sign
     }`
   }

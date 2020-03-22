@@ -6,6 +6,8 @@ import { RenderContext, generateFullContext } from "./RenderContext"
 import PlaneSailingAtoB from "./Worksheets/PlaneSailingAtoB"
 import PlaneSailingDR from "./Worksheets/PlaneSailingDR"
 import MercatorSailingDR from "./Worksheets/MercatorSailingDR"
+import MercatorSailingAtoB from "./Worksheets/MercatorSailingAtoB"
+import GreatCircleSailingAtoB from "./Worksheets/GreatCircleSailingAtoB"
 
 document.addEventListener("DOMContentLoaded", function(event) {
   const appContainer = document.getElementById("app")
@@ -34,6 +36,12 @@ function MainView() {
       break
     case "mercator_sailing_dr":
       view = <MercatorSailingDR />
+      break
+    case "mercator_sailing_ab":
+      view = <MercatorSailingAtoB />
+      break
+    case "great_circle_sailing_ab":
+      view = <GreatCircleSailingAtoB />
       break
     default:
       view = <ChooseWorksheet setPage={setPage} />
@@ -72,8 +80,18 @@ function ChooseWorksheet(props: ChooseWorksheetProps) {
         </a>
       </li>
       <li>
+        <a onClick={() => props.setPage("mercator_sailing_ab")}>
+          {l10n.t("mercator_sailing_ab.title")}
+        </a>
+      </li>
+      <li>
         <a onClick={() => props.setPage("mercator_sailing_dr")}>
           {l10n.t("mercator_sailing_dr.title")}
+        </a>
+      </li>
+      <li>
+        <a onClick={() => props.setPage("great_circle_sailing_ab")}>
+          {l10n.t("great_circle_sailing_ab.title")}
         </a>
       </li>
     </ul>

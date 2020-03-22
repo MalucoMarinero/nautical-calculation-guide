@@ -153,7 +153,10 @@ export default function MercatorSailingDR() {
       </Fragment>
     )
 
-    const dmp = Math.abs(state.start_mer_part - state.dest_mer_part)
+    const dmp =
+      dest_lat.sign != state.point_a_lat.sign
+        ? Math.abs(state.start_mer_part + state.dest_mer_part)
+        : Math.abs(state.start_mer_part - state.dest_mer_part)
     const dlon_deg = (dmp * tan(ca)) / 60
     const dlon = lonFromFloat(ca_lon == "E" ? dlon_deg : dlon_deg * -1)
 

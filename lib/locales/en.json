@@ -27,6 +27,21 @@
       "start_latitude": "Start Latitude",
       "end_latitude": "End Latitude"
     },
+    "mercator_sailing_ab": {
+      "title": "Mercator Sailing - Position A to B",
+      "parallel_sailing": "Latitudes are equivalent, so using parallel sailing.",
+      "mercator_sailing": "Latitudes not equivalent, so using Mercator sailing.",
+      "point_a": "Point A",
+      "point_b": "Point B",
+      "meridional_parts": "Collect the Meridional Parts for the Start and Finish Latitude",
+      "start_latitude": "Start Latitude",
+      "end_latitude": "End Latitude"
+    },
+    "great_circle_sailing_ab": {
+      "title": "Great Circle Sailing - Position A to B",
+      "point_a": "Point A",
+      "point_b": "Point B"
+    },
     "get_started": "Get Started"
   }
 }
