@@ -43,7 +43,7 @@
     "git-rev": "0.2.1",
     "husky": ">=3",
     "inline-css": "^2.5.1",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "known-css-properties": "0.17.0",
     "less": "3.10.3",
     "lint-staged": ">=9",
