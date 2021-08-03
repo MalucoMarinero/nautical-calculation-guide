@@ -57,7 +57,7 @@
     "rename": "^1.0.4",
     "scriptjs": "^2.5.9",
     "staticify": "3.3.4",
-    "tar": "5.0.5",
+    "tar": "5.0.7",
     "ts-loader": "6.2.1",
     "typescript": "3.7.3",
     "universal-component-server": "0.1.5",
