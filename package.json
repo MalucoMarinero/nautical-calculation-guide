@@ -62,7 +62,7 @@
     "typescript": "3.7.3",
     "universal-component-server": "0.1.5",
     "url-search-params-polyfill": "^7.0.0",
-    "validator": "^12.1.0",
+    "validator": "^13.7.0",
     "webpack": "4.41.2",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-node-externals": "^1.7.2",
